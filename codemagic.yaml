@@ -1,19 +1,25 @@
 workflows:
   testing-workflow:
-    name: Tuist Example Workflow
+    name: Tuist M1 Workflow
     instance_type: mac_mini_m1
     environment:
       xcode: 13.3
-      cocoapods: default
-    triggering:
-      events:
-        - push
-        - tag
-        - pull_request
-      branch_patterns:
-        - pattern: "main"
-          include: true
-          source: true
+    scripts:
+      - name: Install tuist
+        script: curl -Ls https://install.tuist.io | bash
+      - name: Generate project
+        script: tuist generate
+      - name: Build project
+        script: tuist build
+      - name: Run tests
+        script: tuist test
+
+workflows:
+  testing-workflow:
+    name: Tuist Inter Workflow
+    instance_type: mac_mini
+    environment:
+      xcode: 13.3
     scripts:
       - name: Install tuist
         script: curl -Ls https://install.tuist.io | bash
