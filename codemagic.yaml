@@ -1,5 +1,5 @@
 workflows:
-  testing-workflow:
+  testing-m1-workflow:
     name: Tuist M1 Workflow
     instance_type: mac_mini_m1
     environment:
@@ -16,10 +16,8 @@ workflows:
         script: tuist build
       - name: Run tests
         script: tuist test
-
-workflows:
-  testing-workflow:
-    name: Tuist Inter Workflow
+  testing-intel-workflow:
+    name: Tuist Intel Workflow
     instance_type: mac_mini
     environment:
       xcode: 13.3
