@@ -4,6 +4,9 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       xcode: 13.3
+    triggering:
+      events:
+        - push
     scripts:
       - name: Install tuist
         script: curl -Ls https://install.tuist.io | bash
@@ -20,6 +23,9 @@ workflows:
     instance_type: mac_mini
     environment:
       xcode: 13.3
+    triggering:
+      events:
+        - push
     scripts:
       - name: Install tuist
         script: curl -Ls https://install.tuist.io | bash
