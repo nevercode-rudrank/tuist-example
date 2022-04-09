@@ -14,8 +14,10 @@ workflows:
         script: tuist generate
       - name: Build project
         script: tuist build
+      - name: Hack 
+        script: xcrun instruments -w 'iPhone 13 (15.4)' || sleep 15
       - name: Run tests
-        script: tuist test
+        script: tuist test --device "iPhone 13" --os 15.4
   testing-intel-workflow:
     name: Tuist Intel Workflow
     instance_type: mac_mini
