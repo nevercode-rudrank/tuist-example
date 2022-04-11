@@ -8,24 +8,14 @@ workflows:
       events:
         - push
     scripts:
-      - |
-        #! /bin/zsh  
-        SIMULATOR_NAME="my-sim"
-  
-        # Create Simulator
-        SIMULATOR_UDID=`xcrun simctl create "$SIMULATOR_NAME" com.apple.CoreSimulator.SimDeviceType.iPhone-13 com.apple.CoreSimulator.SimRuntime.iOS-15-4`
- 
-        # Run Simulator
-        xcrun simctl boot $SIMULATOR_UDID
       - name: Install tuist
         script: curl -Ls https://install.tuist.io | bash
       - name: Generate project
         script: tuist generate
       - name: Build project
         script: tuist build
-
       - name: Run tests
-        script: tuist test --device "iPhone 13" --os 15.4
+        script: arch -arm64 tuist test --device "iPhone 13" --os 15.4
   testing-intel-workflow:
     name: Tuist Intel Workflow
     instance_type: mac_mini
